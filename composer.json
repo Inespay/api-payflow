@@ -1,0 +1,28 @@
+{
+  "name": "inespay/api-payflow",
+  "description": "SDK api payFlow",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Inespay",
+      "email": "info@inespay.com"
+    }
+  ],
+  "require": {
+    "php": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Inespay\\api\\payflow\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Inespay\\api\\payflow\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0"
+  }
+}
