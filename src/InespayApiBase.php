@@ -1,6 +1,8 @@
 <?php
 
 namespace Inespay\api\payflow;
+use Exception;
+
 class InespayApiBase
 {
     const STATUS_CODE_SUCCESS = 200;
@@ -69,7 +71,7 @@ class InespayApiBase
             curl_close($curl);
             $result = json_decode($result);
         } else {
-            throw new Exception(curl_error($curl));
+            throw new \Exception(curl_error($curl));
         }
 
         return $result;
