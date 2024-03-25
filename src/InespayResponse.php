@@ -5,8 +5,11 @@ namespace Inespay\api\payflow;
 class InespayResponse
 {
     private $urlSigned = null;
+
     private $statusCode = null;
+
     private $idDebt = null;
+
     private $statusDescription = null;
 
     public function __construct($data)
