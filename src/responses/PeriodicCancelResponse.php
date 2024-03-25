@@ -1,6 +1,6 @@
 <?php
 
-namespace Inespay\api\payflow\responses;
+namespace inespayPayments\api\payflow\responses;
 
 class PeriodicCancelResponse
 {

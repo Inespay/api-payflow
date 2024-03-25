@@ -1,11 +1,11 @@
 {
-  "name": "inespay/api-payflow",
+  "name": "inespay-payments/api-payflow",
   "description": "SDK api payFlow",
   "type": "library",
   "license": "MIT",
   "authors": [
     {
-      "name": "Inespay",
+      "name": "inespayPayments",
       "email": "info@inespay.com"
     }
   ],
@@ -14,12 +14,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Inespay\\api\\payflow\\": "src/"
+      "inespayPayments\\api\\payflow\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Inespay\\api\\payflow\\Tests\\": "tests/"
+      "inespayPayments\\api\\payflow\\Tests\\": "tests/"
     }
   },
   "require-dev": {

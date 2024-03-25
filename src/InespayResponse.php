@@ -1,6 +1,6 @@
 <?php
 
-namespace Inespay\api\payflow;
+namespace inespayPayments\api\payflow;
 
 class InespayResponse
 {

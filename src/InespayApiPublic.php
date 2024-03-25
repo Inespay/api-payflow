@@ -1,6 +1,6 @@
 <?php
 
-namespace Inespay\api\payflow;
+namespace inespayPayments\api\payflow;
 
 use Inespay\api\payflow\requests\PeriodicCancelRequest;
 use Inespay\api\payflow\requests\PeriodicInitRequest;

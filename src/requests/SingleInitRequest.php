@@ -1,6 +1,6 @@
 <?php
 
-namespace Inespay\api\payflow\requests;
+namespace inespayPayments\api\payflow\requests;
 
 class SingleInitRequest implements \JsonSerializable
 {
