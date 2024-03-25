@@ -10,3 +10,4 @@ Ejecuta el siguiente comando para instalar la biblioteca:
 ```
 composer require inespay/api-payflow
 ```
+Puedes ver la API DOC en el siguiente enlace https://github.com/Inespay/api-payflow
