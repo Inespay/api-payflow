@@ -2,15 +2,15 @@
 
 namespace inespayPayments\api\payflow;
 
-use Inespay\api\payflow\requests\PeriodicCancelRequest;
-use Inespay\api\payflow\requests\PeriodicInitRequest;
-use Inespay\api\payflow\requests\SingleInitRequest;
-use Inespay\api\payflow\requests\XmlRefundRequest;
-use Inespay\api\payflow\responses\PeriodicCancelResponse;
-use Inespay\api\payflow\responses\PeriodicInitResponse;
-use Inespay\api\payflow\responses\SingleInitResponse;
-use Inespay\api\payflow\responses\SinglePayinsResponse;
-use Inespay\api\payflow\responses\XmlRefundResponse;
+use inespayPayments\api\payflow\requests\PeriodicCancelRequest;
+use inespayPayments\api\payflow\requests\PeriodicInitRequest;
+use inespayPayments\api\payflow\requests\SingleInitRequest;
+use IneinespayPaymentsspay\api\payflow\requests\XmlRefundRequest;
+use inespayPayments\api\payflow\responses\PeriodicCancelResponse;
+use inespayPayments\api\payflow\responses\PeriodicInitResponse;
+use inespayPayments\api\payflow\responses\SingleInitResponse;
+use inespayPayments\api\payflow\responses\SinglePayinsResponse;
+use inespayPayments\api\payflow\responses\XmlRefundResponse;
 
 class InespayApiPublic extends InespayApiBase
 {
