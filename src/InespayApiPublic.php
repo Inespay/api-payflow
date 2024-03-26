@@ -5,7 +5,7 @@ namespace inespayPayments\api\payflow;
 use inespayPayments\api\payflow\requests\PeriodicCancelRequest;
 use inespayPayments\api\payflow\requests\PeriodicInitRequest;
 use inespayPayments\api\payflow\requests\SingleInitRequest;
-use IneinespayPaymentsspay\api\payflow\requests\XmlRefundRequest;
+use inespayPayments\api\payflow\requests\XmlRefundRequest;
 use inespayPayments\api\payflow\responses\PeriodicCancelResponse;
 use inespayPayments\api\payflow\responses\PeriodicInitResponse;
 use inespayPayments\api\payflow\responses\SingleInitResponse;
