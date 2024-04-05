@@ -9,6 +9,7 @@ use inespayPayments\api\payflow\requests\XmlRefundRequest;
 use inespayPayments\api\payflow\responses\PeriodicCancelResponse;
 use inespayPayments\api\payflow\responses\PeriodicInitResponse;
 use inespayPayments\api\payflow\responses\SingleInitResponse;
+use inespayPayments\api\payflow\responses\SinglePayinResponse;
 use inespayPayments\api\payflow\responses\SinglePayinsResponse;
 use inespayPayments\api\payflow\responses\XmlRefundResponse;
 
@@ -241,6 +242,13 @@ class InespayApiPublic extends InespayApiBase
 
         return new SinglePayinsResponse($response);
     }
+
+    public function getSinglePayinDetail($singlePayinId): SinglePayinResponse
+	{
+		$dataParams = [];
+		$response = parent::apiRequest($dataParams, self::SINGLE_PAYINS_INFO_ENDPOINT . '/' . $singlePayinId, self::GET_HTTP);
+		return new SinglePayinResponse($response);
+	}
 
     public function setSubject($subject)
     {
