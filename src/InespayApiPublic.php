@@ -2,10 +2,12 @@
 
 namespace inespayPayments\api\payflow;
 
+use inespayPayments\api\payflow\requests\BankRequest;
 use inespayPayments\api\payflow\requests\PeriodicCancelRequest;
 use inespayPayments\api\payflow\requests\PeriodicInitRequest;
 use inespayPayments\api\payflow\requests\SingleInitRequest;
 use inespayPayments\api\payflow\requests\XmlRefundRequest;
+use inespayPayments\api\payflow\responses\BankResponse;
 use inespayPayments\api\payflow\responses\PeriodicCancelResponse;
 use inespayPayments\api\payflow\responses\PeriodicInitResponse;
 use inespayPayments\api\payflow\responses\SingleInitResponse;
@@ -26,6 +28,8 @@ class InespayApiPublic extends InespayApiBase
     public const SINGLE_PAYIN_REFUND_ENDPOINT = '/refunds/init';
 
     public const SINGLE_PAYINS_REFUND_SEPA_XML = '/refunds/sepa-xml';
+
+    public const BANKS_ENDPOINT =  '/banks';
 
     public const SCHEME_STANDARD_TRANSFER = 'SCT';
 
@@ -715,5 +719,13 @@ class InespayApiPublic extends InespayApiBase
     private function filterToRemoveNullValues($var): bool
     {
         return ($var !== null && $var !== false && $var !== "");
+    }
+
+    public function getBanks(BankRequest $bankRequest): BankResponse
+    {
+		$bankRequestArray = json_decode(json_encode($bankRequest), true);
+		$bankRequestWithoutNulls = array_filter((array) $bankRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
+		$response = parent::apiRequest($bankRequestWithoutNulls, self::BANKS_ENDPOINT, self::GET_HTTP);
+        return new BankResponse($response);
     }
 }
