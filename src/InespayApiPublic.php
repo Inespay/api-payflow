@@ -723,6 +723,7 @@ class InespayApiPublic extends InespayApiBase
 
     public function getBanks(BankRequest $bankRequest): BankResponse
     {
+        
 		$bankRequestArray = json_decode(json_encode($bankRequest), true);
 		$bankRequestWithoutNulls = array_filter((array) $bankRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
 		$response = parent::apiRequest($bankRequestWithoutNulls, self::BANKS_ENDPOINT, self::GET_HTTP);
