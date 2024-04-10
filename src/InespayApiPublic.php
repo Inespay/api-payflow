@@ -5,11 +5,13 @@ namespace inespayPayments\api\payflow;
 use inespayPayments\api\payflow\requests\BankRequest;
 use inespayPayments\api\payflow\requests\PeriodicCancelRequest;
 use inespayPayments\api\payflow\requests\PeriodicInitRequest;
+use inespayPayments\api\payflow\requests\RefundRequest;
 use inespayPayments\api\payflow\requests\SingleInitRequest;
 use inespayPayments\api\payflow\requests\XmlRefundRequest;
 use inespayPayments\api\payflow\responses\BankResponse;
 use inespayPayments\api\payflow\responses\PeriodicCancelResponse;
 use inespayPayments\api\payflow\responses\PeriodicInitResponse;
+use inespayPayments\api\payflow\responses\RefundResponse;
 use inespayPayments\api\payflow\responses\SingleInitResponse;
 use inespayPayments\api\payflow\responses\SinglePayinResponse;
 use inespayPayments\api\payflow\responses\SinglePayinsResponse;
@@ -205,9 +207,10 @@ class InespayApiPublic extends InespayApiBase
     /**
      * @throws \Exception
      */
-    public function generateRefund($singlePayinId, $amount, $description, $reference)
+    //public function generateRefund($singlePayinId, $amount, $description, $reference)
+    public function generateRefund(RefundRequest $refundRequest): RefundResponse
     {
-        $dataParams = [];
+        /*$dataParams = [];
         $error = null;
 
         if ($singlePayinId == null) {
@@ -228,7 +231,13 @@ class InespayApiPublic extends InespayApiBase
             return parent::apiRequest($dataParams, self::SINGLE_PAYIN_REFUND_ENDPOINT);
         } else {
             die('Error:' . $error);
-        }
+        }*/
+
+        $refundRequestArray = json_decode(json_encode($refundRequest), true);
+        $refundRequestWithoutNulls = array_filter((array) $refundRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
+
+        $response = parent::apiRequest($refundRequestWithoutNulls, self::SINGLE_PAYIN_REFUND_ENDPOINT);
+        return new RefundResponse($response);
     }
 
     /**
