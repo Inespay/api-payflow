@@ -232,7 +232,7 @@ class InespayApiPublic extends InespayApiBase
         } else {
             die('Error:' . $error);
         }*/
-
+        $refundRequest->setAmount($this->convertAmount($refundRequest->getAmount()));
         $refundRequestArray = json_decode(json_encode($refundRequest), true);
         $refundRequestWithoutNulls = array_filter((array) $refundRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
 
