@@ -4,17 +4,13 @@ namespace inespayPayments\api\payflow\requests;
 
 class RefundRequest implements \JsonSerializable
 {
-    private $debtorIdFromBank;
+    private $singlePayinId;
 
-    private $debtorBic;
+    private $description;
 
-    private $debtorIban;
+    private $reference;
 
-    private $debtorName;
-
-    private $batchBooking;
-
-    private $paymentOrders;
+    private $amount;
 
     public function jsonSerialize()
     {
@@ -24,96 +20,64 @@ class RefundRequest implements \JsonSerializable
     /**
      * @return mixed
      */
-    public function getDebtorIdFromBank()
+    public function getSinglePayinId()
     {
-        return $this->debtorIdFromBank;
+        return $this->singlePayinId;
     }
 
     /**
-     * @param mixed $debtorIdFromBank
+     * @param mixed $singlePayinId
      */
-    public function setDebtorIdFromBank($debtorIdFromBank): void
+    public function setSinglePayinId($singlePayinId): void
     {
-        $this->debtorIdFromBank = $debtorIdFromBank;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDebtorBic()
-    {
-        return $this->debtorBic;
-    }
-
-    /**
-     * @param mixed $debtorBic
-     */
-    public function setDebtorBic($debtorBic): void
-    {
-        $this->debtorBic = $debtorBic;
+        $this->singlePayinId = $singlePayinId;
     }
 
     /**
      * @return mixed
      */
-    public function getDebtorIban()
+    public function getDescription()
     {
-        return $this->debtorIban;
+        return $this->description;
     }
 
     /**
-     * @param mixed $debtorIban
+     * @param mixed $description
      */
-    public function setDebtorIban($debtorIban): void
+    public function setDescription($description): void
     {
-        $this->debtorIban = $debtorIban;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDebtorName()
-    {
-        return $this->debtorName;
-    }
-
-    /**
-     * @param mixed $debtorName
-     */
-    public function setDebtorName($debtorName): void
-    {
-        $this->debtorName = $debtorName;
+        $this->description = $description;
     }
 
     /**
      * @return mixed
      */
-    public function getBatchBooking()
+    public function getReference()
     {
-        return $this->batchBooking;
+        return $this->reference;
     }
 
     /**
-     * @param mixed $batchBooking
+     * @param mixed $reference
      */
-    public function setBatchBooking($batchBooking): void
+    public function setReference($reference): void
     {
-        $this->batchBooking = $batchBooking;
+        $this->reference = $reference;
     }
 
     /**
      * @return mixed
      */
-    public function getPaymentOrders()
+    public function getAmount()
     {
-        return $this->paymentOrders;
+        return $this->amount;
     }
 
     /**
-     * @param mixed $paymentOrders
+     * @param mixed $amount
      */
-    public function setPaymentOrders($paymentOrders): void
+    public function setAmount($amount): void
     {
-        $this->paymentOrders = $paymentOrders;
+        $this->amount = $amount;
     }
 }
