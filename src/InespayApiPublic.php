@@ -7,6 +7,7 @@ use inespayPayments\api\payflow\requests\PeriodicCancelRequest;
 use inespayPayments\api\payflow\requests\PeriodicInitRequest;
 use inespayPayments\api\payflow\requests\RefundRequest;
 use inespayPayments\api\payflow\requests\SingleInitRequest;
+use inespayPayments\api\payflow\requests\SinglePayinRequest;
 use inespayPayments\api\payflow\requests\XmlRefundRequest;
 use inespayPayments\api\payflow\responses\BankResponse;
 use inespayPayments\api\payflow\responses\PeriodicCancelResponse;
@@ -207,31 +208,8 @@ class InespayApiPublic extends InespayApiBase
     /**
      * @throws \Exception
      */
-    //public function generateRefund($singlePayinId, $amount, $description, $reference)
     public function generateRefund(RefundRequest $refundRequest): RefundResponse
     {
-        /*$dataParams = [];
-        $error = null;
-
-        if ($singlePayinId == null) {
-            $error = 'singlePayinId not defined';
-        } elseif ($amount == null) {
-            $error = 'amount not defined';
-        } elseif ($description == null) {
-            $error = 'description not defined';
-        } elseif ($reference == null) {
-            $error = 'reference not defined';
-        }
-
-        if ($error == null) {
-            $dataParams['singlePayinId'] = $singlePayinId;
-            $dataParams['amount'] = $this->convertAmount($amount);
-            $dataParams['description'] = $description;
-            $dataParams['reference'] = $reference;
-            return parent::apiRequest($dataParams, self::SINGLE_PAYIN_REFUND_ENDPOINT);
-        } else {
-            die('Error:' . $error);
-        }*/
         $refundRequest->setAmount($this->convertAmount($refundRequest->getAmount()));
         $refundRequestArray = json_decode(json_encode($refundRequest), true);
         $refundRequestWithoutNulls = array_filter((array) $refundRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
@@ -243,17 +221,14 @@ class InespayApiPublic extends InespayApiBase
     /**
      * @throws \Exception
      */
-    public function getSinglePayins($from, $to, $pageSize = 15, $page = 1): SinglePayinsResponse
+    public function getSinglePayins(SinglePayinRequest $singlePayinRequest): SinglePayinsResponse
     {
-        $dataParams = [];
-        $dataParams['dateFrom'] = $from;
-        $dataParams['dateTo'] = $to;
-        $dataParams['pageSize'] = $pageSize;
-        $dataParams['pageRequest'] = $page;
+        $singlePayinRequestArray = json_decode(json_encode($singlePayinRequest), true);
+        $singlePayinRequestWithoutNulls = array_filter((array) $singlePayinRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
 
-        $response = parent::apiRequest($dataParams, self::SINGLE_PAYINS_INFO_ENDPOINT, self::GET_HTTP);
-
+        $response = parent::apiRequest($singlePayinRequestWithoutNulls, self::SINGLE_PAYINS_INFO_ENDPOINT, self::GET_HTTP);
         return new SinglePayinsResponse($response);
+
     }
 
     public function getSinglePayinDetail($singlePayinId): SinglePayinResponse
