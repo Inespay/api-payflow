@@ -12,6 +12,7 @@ use inespayPayments\api\payflow\requests\XmlRefundRequest;
 use inespayPayments\api\payflow\responses\BankResponse;
 use inespayPayments\api\payflow\responses\PeriodicCancelResponse;
 use inespayPayments\api\payflow\responses\PeriodicInitResponse;
+use inespayPayments\api\payflow\responses\PeriodicPayinResponse;
 use inespayPayments\api\payflow\responses\RefundResponse;
 use inespayPayments\api\payflow\responses\SingleInitResponse;
 use inespayPayments\api\payflow\responses\SinglePayinResponse;
@@ -25,6 +26,8 @@ class InespayApiPublic extends InespayApiBase
     public const SINGLE_PAYINS_INFO_ENDPOINT = '/payins/single';
 
     public const PERIODIC_PAYIN_INIT_ENDPOINT = '/payins/periodic/init';
+
+    public const PERIODIC_PAYIN_INFO_ENDPOINT = '/payins/periodic';
 
     public const PERIODIC_PAYIN_CANCEL_ENDPOINT = '/payins/periodic/cancel';
 
@@ -236,6 +239,13 @@ class InespayApiPublic extends InespayApiBase
 		$dataParams = [];
 		$response = parent::apiRequest($dataParams, self::SINGLE_PAYINS_INFO_ENDPOINT . '/' . $singlePayinId, self::GET_HTTP);
 		return new SinglePayinResponse($response);
+	}
+
+    public function getPeriodicPayinDetail($periodicPayinId): PeriodicPayinResponse
+	{
+		$dataParams = [];
+		$response = parent::apiRequest($dataParams, self::PERIODIC_PAYIN_INFO_ENDPOINT . '/' . $periodicPayinId, self::GET_HTTP);
+		return new PeriodicPayinResponse($response);
 	}
 
     public function setSubject($subject)
