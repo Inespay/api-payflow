@@ -552,9 +552,9 @@ class InespayApiPublic extends InespayApiBase
         return $this->dataReturnJson['description'];
     }
 
-    public function getTransactionIdFromDataReturn()
+    public function getSinglePayinIdFromDataReturn()
     {
-        return $this->dataReturnJson['transactionId'];
+        return $this->dataReturnJson['singlePayinId'];
     }
 
     public function getAmountFromDataReturn()
@@ -565,6 +565,16 @@ class InespayApiPublic extends InespayApiBase
     public function getReferenceFromDataReturn()
     {
         return $this->dataReturnJson['reference'];
+    }
+
+    public function getDebtorNameFromDataReturn()
+    {
+        return $this->dataReturnJson['debtorName'];
+    }
+
+    public function getDebtorAccountFromDataReturn()
+    {
+        return $this->dataReturnJson['debtorAccount'];
     }
 
     public function getCustomDataFromDataReturn()
