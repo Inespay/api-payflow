@@ -15,6 +15,7 @@ use inespayPayments\api\payflow\responses\PeriodicInitResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinResponse;
 use inespayPayments\api\payflow\responses\RefundResponse;
 use inespayPayments\api\payflow\responses\SingleInitResponse;
+use inespayPayments\api\payflow\responses\SinglePayinNotificationResponse;
 use inespayPayments\api\payflow\responses\SinglePayinResponse;
 use inespayPayments\api\payflow\responses\SinglePayinsResponse;
 use inespayPayments\api\payflow\responses\XmlRefundResponse;
@@ -24,6 +25,8 @@ class InespayApiPublic extends InespayApiBase
     public const SINGLE_PAINS_INIT_ENDPOINT = '/payins/single/init';
 
     public const SINGLE_PAYINS_INFO_ENDPOINT = '/payins/single';
+
+    public const SINGLE_PAYINS_NOTIFICATION_ENDPOINT = '/payins/single/notification';
 
     public const PERIODIC_PAYIN_INIT_ENDPOINT = '/payins/periodic/init';
 
@@ -731,5 +734,15 @@ class InespayApiPublic extends InespayApiBase
 		$bankRequestWithoutNulls = array_filter((array) $bankRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
 		$response = parent::apiRequest($bankRequestWithoutNulls, self::BANKS_ENDPOINT, self::GET_HTTP);
         return new BankResponse($response);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function getSinglePayinsNotification($singlePayinId): SinglePayinNotificationResponse
+    {
+        $dataParams = [];
+		$response = parent::apiRequest($dataParams, self::SINGLE_PAYINS_NOTIFICATION_ENDPOINT . '/' . $singlePayinId, self::GET_HTTP);
+		return new SinglePayinNotificationResponse($response);
     }
 }
