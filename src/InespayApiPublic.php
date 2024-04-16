@@ -2,12 +2,14 @@
 
 namespace inespayPayments\api\payflow;
 
+use Illuminate\Support\Facades\Log;
 use inespayPayments\api\payflow\requests\BankRequest;
 use inespayPayments\api\payflow\requests\PeriodicCancelRequest;
 use inespayPayments\api\payflow\requests\PeriodicInitRequest;
 use inespayPayments\api\payflow\requests\RefundRequest;
 use inespayPayments\api\payflow\requests\SingleInitRequest;
 use inespayPayments\api\payflow\requests\SinglePayinRequest;
+use inespayPayments\api\payflow\requests\SinglePayinResendNotificationRequest;
 use inespayPayments\api\payflow\requests\XmlRefundRequest;
 use inespayPayments\api\payflow\responses\BankResponse;
 use inespayPayments\api\payflow\responses\PeriodicCancelResponse;
@@ -16,6 +18,7 @@ use inespayPayments\api\payflow\responses\PeriodicPayinResponse;
 use inespayPayments\api\payflow\responses\RefundResponse;
 use inespayPayments\api\payflow\responses\SingleInitResponse;
 use inespayPayments\api\payflow\responses\SinglePayinNotificationResponse;
+use inespayPayments\api\payflow\responses\SinglePayinResendNotificationResponse;
 use inespayPayments\api\payflow\responses\SinglePayinResponse;
 use inespayPayments\api\payflow\responses\SinglePayinsResponse;
 use inespayPayments\api\payflow\responses\XmlRefundResponse;
@@ -27,6 +30,8 @@ class InespayApiPublic extends InespayApiBase
     public const SINGLE_PAYINS_INFO_ENDPOINT = '/payins/single';
 
     public const SINGLE_PAYINS_NOTIFICATION_ENDPOINT = '/payins/single/notification';
+
+    public const SINGLE_PAYINS_RESEND_NOTIFICATION_ENDPOINT = '/payins/single/notification/resend';
 
     public const PERIODIC_PAYIN_INIT_ENDPOINT = '/payins/periodic/init';
 
@@ -744,5 +749,18 @@ class InespayApiPublic extends InespayApiBase
         $dataParams = [];
 		$response = parent::apiRequest($dataParams, self::SINGLE_PAYINS_NOTIFICATION_ENDPOINT . '/' . $singlePayinId, self::GET_HTTP);
 		return new SinglePayinNotificationResponse($response);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function resendSinglePayinsNotification(SinglePayinResendNotificationRequest $singlePayinResendNotificationRequest): SinglePayinResendNotificationResponse
+    {
+        $singlePayinResendNotificationRequestArray = json_decode(json_encode($singlePayinResendNotificationRequest), true);
+        $singlePayinResendNotificationRequestWithoutNulls = array_filter((array) $singlePayinResendNotificationRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
+
+        $response = parent::apiRequest($singlePayinResendNotificationRequestWithoutNulls, self::SINGLE_PAYINS_RESEND_NOTIFICATION_ENDPOINT);
+
+        return new SinglePayinResendNotificationResponse($response);
     }
 }
