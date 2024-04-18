@@ -29,9 +29,9 @@ class InespayApiPublic extends InespayApiBase
 
     public const SINGLE_PAYINS_INFO_ENDPOINT = '/payins/single';
 
-    public const SINGLE_PAYINS_NOTIFICATION_ENDPOINT = '/payins/single/notification';
+    public const SINGLE_PAYINS_NOTIFICATION_ENDPOINT = '/payins/single/notifications';
 
-    public const SINGLE_PAYINS_RESEND_NOTIFICATION_ENDPOINT = '/payins/single/notification/resend';
+    public const SINGLE_PAYINS_RESEND_NOTIFICATION_ENDPOINT = '/payins/single/notifications/resend';
 
     public const PERIODIC_PAYIN_INIT_ENDPOINT = '/payins/periodic/init';
 
