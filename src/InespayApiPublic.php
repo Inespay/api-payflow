@@ -21,6 +21,7 @@ use inespayPayments\api\payflow\responses\SinglePayinNotificationResponse;
 use inespayPayments\api\payflow\responses\SinglePayinResendNotificationResponse;
 use inespayPayments\api\payflow\responses\SinglePayinResponse;
 use inespayPayments\api\payflow\responses\SinglePayinsResponse;
+use inespayPayments\api\payflow\responses\SinglePayinTransactionsResponse;
 use inespayPayments\api\payflow\responses\XmlRefundResponse;
 
 class InespayApiPublic extends InespayApiBase
@@ -29,9 +30,11 @@ class InespayApiPublic extends InespayApiBase
 
     public const SINGLE_PAYINS_INFO_ENDPOINT = '/payins/single';
 
-    public const SINGLE_PAYINS_NOTIFICATION_ENDPOINT = '/payins/single/notifications';
+    public const SINGLE_PAYINS_NOTIFICATIONS_ENDPOINT = '/payins/single/notifications';
 
-    public const SINGLE_PAYINS_RESEND_NOTIFICATION_ENDPOINT = '/payins/single/notifications/resend';
+    public const SINGLE_PAYINS_RESEND_NOTIFICATIONS_ENDPOINT = '/payins/single/notifications/resend';
+
+    public const SINGLE_PAYINS_TRANSACTIONS_ENDPOINT = '/payins/single/transactions';
 
     public const PERIODIC_PAYIN_INIT_ENDPOINT = '/payins/periodic/init';
 
@@ -747,7 +750,7 @@ class InespayApiPublic extends InespayApiBase
     public function getSinglePayinsNotification($singlePayinId): SinglePayinNotificationResponse
     {
         $dataParams = [];
-		$response = parent::apiRequest($dataParams, self::SINGLE_PAYINS_NOTIFICATION_ENDPOINT . '/' . $singlePayinId, self::GET_HTTP);
+		$response = parent::apiRequest($dataParams, self::SINGLE_PAYINS_NOTIFICATIONS_ENDPOINT . '/' . $singlePayinId, self::GET_HTTP);
 		return new SinglePayinNotificationResponse($response);
     }
 
@@ -759,8 +762,18 @@ class InespayApiPublic extends InespayApiBase
         $singlePayinResendNotificationRequestArray = json_decode(json_encode($singlePayinResendNotificationRequest), true);
         $singlePayinResendNotificationRequestWithoutNulls = array_filter((array) $singlePayinResendNotificationRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
 
-        $response = parent::apiRequest($singlePayinResendNotificationRequestWithoutNulls, self::SINGLE_PAYINS_RESEND_NOTIFICATION_ENDPOINT);
+        $response = parent::apiRequest($singlePayinResendNotificationRequestWithoutNulls, self::SINGLE_PAYINS_RESEND_NOTIFICATIONS_ENDPOINT);
 
         return new SinglePayinResendNotificationResponse($response);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function getSinglePayinsTransactions($singlePayinId): SinglePayinTransactionsResponse
+    {
+        $dataParams = [];
+		$response = parent::apiRequest($dataParams, self::SINGLE_PAYINS_TRANSACTIONS_ENDPOINT . '/' . $singlePayinId, self::GET_HTTP);
+		return new SinglePayinTransactionsResponse($response);
     }
 }
