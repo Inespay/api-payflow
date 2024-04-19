@@ -38,6 +38,7 @@ class SinglePayinResponse
 	private $createdAt = null;
 	private $updatedAt = null;
 	private $expiredAt = null;
+	private $transactions = [];
 
 	public function __construct($data)
 	{
@@ -121,6 +122,9 @@ class SinglePayinResponse
 		}
 		if (isset($data->expiredAt)) {
 			$this->expiredAt = $data->expiredAt;
+		}
+		if (isset($data->transactions)) {
+			$this->transactions = $data->transactions;
 		}
 	}
 
@@ -529,5 +533,20 @@ class SinglePayinResponse
 	public function setExpiredAt($expiredAt): void
 	{
 		$this->expiredAt = $expiredAt;
+	}
+	/**
+	 * @return null
+	 */
+	public function getTransactions()
+	{
+		return $this->transactions;
+	}
+
+	/**
+	 * @param null $transactions
+	 */
+	public function setTransactions($transactions): void
+	{
+		$this->transactions = $transactions;
 	}
 }
