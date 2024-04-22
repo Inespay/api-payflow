@@ -4,6 +4,7 @@ namespace inespayPayments\api\payflow;
 
 use Illuminate\Support\Facades\Log;
 use inespayPayments\api\payflow\requests\BankRequest;
+use inespayPayments\api\payflow\requests\MetricsTopBanksRequest;
 use inespayPayments\api\payflow\requests\PeriodicCancelRequest;
 use inespayPayments\api\payflow\requests\PeriodicInitRequest;
 use inespayPayments\api\payflow\requests\RefundRequest;
@@ -23,6 +24,9 @@ use inespayPayments\api\payflow\responses\SinglePayinResponse;
 use inespayPayments\api\payflow\responses\SinglePayinsResponse;
 use inespayPayments\api\payflow\responses\SinglePayinTransactionsResponse;
 use inespayPayments\api\payflow\responses\XmlRefundResponse;
+use inespayPayments\api\payflow\requests\MetricsTotalsRequest;
+use inespayPayments\api\payflow\responses\MetricsTopBanksResponse;
+use inespayPayments\api\payflow\responses\MetricsTotalsResponse;
 
 class InespayApiPublic extends InespayApiBase
 {
@@ -35,6 +39,10 @@ class InespayApiPublic extends InespayApiBase
     public const SINGLE_PAYINS_RESEND_NOTIFICATIONS_ENDPOINT = '/payins/single/notifications/resend';
 
     public const SINGLE_PAYINS_TRANSACTIONS_ENDPOINT = '/payins/single/transactions';
+
+    public const SINGLE_PAYINS_METRICS_TOTALS_ENDPOINT = '/payins/single/metrics/totals';
+
+    public const SINGLE_PAYINS_METRICS_TOP_BANKS_ENDPOINT = '/payins/single/metrics/top-banks';
 
     public const PERIODIC_PAYIN_INIT_ENDPOINT = '/payins/periodic/init';
 
@@ -775,5 +783,27 @@ class InespayApiPublic extends InespayApiBase
         $dataParams = [];
 		$response = parent::apiRequest($dataParams, self::SINGLE_PAYINS_TRANSACTIONS_ENDPOINT . '/' . $singlePayinId, self::GET_HTTP);
 		return new SinglePayinTransactionsResponse($response);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function getMetricsTotals(MetricsTotalsRequest $metricsTotalsRequest): MetricsTotalsResponse
+    {
+        $metricsTotalsRequestArray = json_decode(json_encode($metricsTotalsRequest), true);
+		$metricsTotalsRequestWithoutNulls = array_filter((array) $metricsTotalsRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
+		$response = parent::apiRequest($metricsTotalsRequestWithoutNulls, self::SINGLE_PAYINS_METRICS_TOTALS_ENDPOINT, self::GET_HTTP);
+        return new MetricsTotalsResponse($response);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function getMetricsTopBanks(MetricsTopBanksRequest $metricsTopBanksRequest): MetricsTopBanksResponse
+    {
+        $metricsTopBanksRequestArray = json_decode(json_encode($metricsTopBanksRequest), true);
+		$metricsTopBanksRequestWithoutNulls = array_filter((array) $metricsTopBanksRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
+		$response = parent::apiRequest($metricsTopBanksRequestWithoutNulls, self::SINGLE_PAYINS_METRICS_TOP_BANKS_ENDPOINT, self::GET_HTTP);
+        return new MetricsTopBanksResponse($response);
     }
 }
