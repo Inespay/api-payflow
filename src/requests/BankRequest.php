@@ -6,6 +6,8 @@ class BankRequest implements \JsonSerializable
 	private $country;
 	private $enabled;
 	private $enabledPeriodicPayment;
+	private $visible;
+	private $bankId;
 
 	public function jsonSerialize()
 	{
@@ -57,5 +59,35 @@ class BankRequest implements \JsonSerializable
 	public function setEnabledPeriodicPayment($enabledPeriodicPayment): void
 	{
 		$this->enabledPeriodicPayment = $enabledPeriodicPayment;
+	}
+	/**
+	 * @return mixed
+	 */
+	public function getVisible()
+	{
+		return $this->visible;
+	}
+
+	/**
+	 * @param mixed $visible
+	 */
+	public function setVisible($visible): void
+	{
+		$this->visible = $visible;
+	}
+	/**
+	 * @return mixed
+	 */
+	public function getBankId()
+	{
+		return $this->bankId;
+	}
+
+	/**
+	 * @param mixed $bankId
+	 */
+	public function setBankId($bankId): void
+	{
+		$this->bankId = $bankId;
 	}
 }
