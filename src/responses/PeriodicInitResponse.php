@@ -2,32 +2,22 @@
 
 namespace inespayPayments\api\payflow\responses;
 
-class PeriodicInitResponse
+class PeriodicInitResponse extends BaseResponse 
 {
     private $periodicPayinId = null;
 
     private $periodicPayinLink = null;
 
-    private $status = null;
-
-    private $statusDesc = null;
-
     public function __construct($data)
     {
+        parent::__construct($data);
+
         if (isset($data->periodicPayinId)) {
             $this->periodicPayinId = $data->periodicPayinId;
         }
 
         if (isset($data->periodicPayinLink)) {
             $this->periodicPayinLink = $data->periodicPayinLink;
-        }
-
-        if (isset($data->status)) {
-            $this->status = $data->status;
-        }
-
-        if (isset($data->statusDesc)) {
-            $this->statusDesc = $data->statusDesc;
         }
     }
 
@@ -39,15 +29,5 @@ class PeriodicInitResponse
     public function getPeriodicPayinLink()
     {
         return $this->periodicPayinLink;
-    }
-
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    public function getStatusDesc()
-    {
-        return $this->statusDesc;
     }
 }

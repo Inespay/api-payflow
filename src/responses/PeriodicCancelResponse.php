@@ -2,32 +2,22 @@
 
 namespace inespayPayments\api\payflow\responses;
 
-class PeriodicCancelResponse
+class PeriodicCancelResponse extends BaseResponse
 {
     private $periodicCancelId = null;
 
     private $periodicCancelLink = null;
 
-    private $status = null;
-
-    private $statusDesc = null;
-
     public function __construct($data)
     {
+        parent::__construct($data);
+
         if (isset($data->periodicCancelId)) {
             $this->periodicCancelId = $data->periodicCancelId;
         }
 
         if (isset($data->periodicCancelLink)) {
             $this->periodicCancelLink = $data->periodicCancelLink;
-        }
-
-        if (isset($data->status)) {
-            $this->status = $data->status;
-        }
-
-        if (isset($data->statusDesc)) {
-            $this->statusDesc = $data->statusDesc;
         }
     }
 
@@ -61,15 +51,5 @@ class PeriodicCancelResponse
     public function setPeriodicCancelLink($periodicCancelLink): void
     {
         $this->periodicCancelLink = $periodicCancelLink;
-    }
-
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    public function getStatusDesc()
-    {
-        return $this->statusDesc;
     }
 }

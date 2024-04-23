@@ -2,10 +2,8 @@
 namespace inespayPayments\api\payflow\responses;
 
 
-class BankResponse
+class BankResponse extends BaseResponse
 {
-	
-	private $status = null;
 	
 	private $description = null;
 	
@@ -15,9 +13,7 @@ class BankResponse
 
 	public function __construct($data)
 	{
-		if (isset($data->status)) {
-			$this->status = $data->status;
-		}
+		parent::__construct($data);
 
 		if (isset($data->description)) {
 			$this->description = $data->description;
@@ -31,12 +27,6 @@ class BankResponse
 			$this->data = $data->data;
 		}
 	}
-
-	public function getStatus()
-	{
-		return $this->status;
-	}
-
 	public function getDescription()
 	{
 		return $this->description;

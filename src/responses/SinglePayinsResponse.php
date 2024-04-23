@@ -2,7 +2,7 @@
 
 namespace inespayPayments\api\payflow\responses;
 
-class SinglePayinsResponse
+class SinglePayinsResponse extends BaseResponse
 {
     private $singlePayins = null;
 
@@ -16,12 +16,10 @@ class SinglePayinsResponse
 
     private $pageSize = null;
 
-    private $status = null;
-
-    private $statusDesc = null;
-
     public function __construct($data)
     {
+        parent::__construct($data);
+
         if (isset($data->singlePayins)) {
             $this->singlePayins = $data->singlePayins;
         }
@@ -44,14 +42,6 @@ class SinglePayinsResponse
 
         if (isset($data->pageSize)) {
             $this->pageSize = $data->pageSize;
-        }
-
-        if (isset($data->status)) {
-            $this->status = $data->status;
-        }
-
-        if (isset($data->statusDesc)) {
-            $this->statusDesc = $data->statusDesc;
         }
     }
 
@@ -149,37 +139,5 @@ class SinglePayinsResponse
     public function setPageSize($pageSize): void
     {
         $this->pageSize = $pageSize;
-    }
-
-    /**
-     * @return null
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param null $status
-     */
-    public function setStatus($status): void
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * @return null
-     */
-    public function getStatusDesc()
-    {
-        return $this->statusDesc;
-    }
-
-    /**
-     * @param null $statusDesc
-     */
-    public function setStatusDesc($statusDesc): void
-    {
-        $this->statusDesc = $statusDesc;
     }
 }
