@@ -35,6 +35,7 @@ class PeriodicPayinResponse extends BaseResponse
 	private $updatedAt = null;
 	private $expiredAt = null;
 	private $transactions = [];
+	private $cancellations = [];
 
 	public function __construct($data)
 	{
@@ -117,6 +118,9 @@ class PeriodicPayinResponse extends BaseResponse
 		}
 		if (isset($data->transactions)) {
 			$this->transactions = $data->transactions;
+		}
+		if (isset($data->cancellations)) {
+			$this->cancellations = $data->cancellations;
 		}
 	}
 
@@ -509,5 +513,20 @@ class PeriodicPayinResponse extends BaseResponse
 	public function setTransactions($transactions): void
 	{
 		$this->transactions = $transactions;
+	}
+	/**
+	 * @return null
+	 */
+	public function getCancellations()
+	{
+		return $this->cancellations;
+	}
+
+	/**
+	 * @param null $cancellations
+	 */
+	public function setCancellations($cancellations): void
+	{
+		$this->cancellations = $cancellations;
 	}
 }
