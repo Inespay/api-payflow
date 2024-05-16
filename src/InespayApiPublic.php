@@ -28,6 +28,7 @@ use inespayPayments\api\payflow\requests\MetricsTotalsRequest;
 use inespayPayments\api\payflow\requests\PeriodicPayinFileRequest;
 use inespayPayments\api\payflow\requests\PeriodicPayinRequest;
 use inespayPayments\api\payflow\requests\PeriodicPayinResendNotificationRequest;
+use inespayPayments\api\payflow\requests\SinglePayinFileRequest;
 use inespayPayments\api\payflow\responses\MetricsTopBanksResponse;
 use inespayPayments\api\payflow\responses\MetricsTotalsResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinNotificationResponse;
@@ -275,12 +276,12 @@ class InespayApiPublic extends InespayApiBase
     /**
      * @throws \Exception
      */
-    public function getSinglePayinsFile(SinglePayinRequest $singlePayinRequest): SinglePayinsFileResponse
+    public function getSinglePayinsFile(SinglePayinFileRequest $singlePayinFileRequest): SinglePayinsFileResponse
     {
-        $singlePayinRequestArray = json_decode(json_encode($singlePayinRequest), true);
-        $singlePayinRequestWithoutNulls = array_filter((array) $singlePayinRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
+        $singlePayinFileRequestArray = json_decode(json_encode($singlePayinFileRequest), true);
+        $singlePayinFileRequestWithoutNulls = array_filter((array) $singlePayinFileRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
 
-        $response = parent::apiRequest($singlePayinRequestWithoutNulls, self::SINGLE_PAYINS_FILE_ENDPOINT, self::GET_HTTP);
+        $response = parent::apiRequest($singlePayinFileRequestWithoutNulls, self::SINGLE_PAYINS_FILE_ENDPOINT, self::GET_HTTP);
         return new SinglePayinsFileResponse($response);
 
     }
