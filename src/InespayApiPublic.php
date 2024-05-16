@@ -25,12 +25,14 @@ use inespayPayments\api\payflow\responses\SinglePayinsResponse;
 use inespayPayments\api\payflow\responses\SinglePayinTransactionsResponse;
 use inespayPayments\api\payflow\responses\XmlRefundResponse;
 use inespayPayments\api\payflow\requests\MetricsTotalsRequest;
+use inespayPayments\api\payflow\requests\PeriodicPayinFileRequest;
 use inespayPayments\api\payflow\requests\PeriodicPayinRequest;
 use inespayPayments\api\payflow\requests\PeriodicPayinResendNotificationRequest;
 use inespayPayments\api\payflow\responses\MetricsTopBanksResponse;
 use inespayPayments\api\payflow\responses\MetricsTotalsResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinNotificationResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinResendNotificationResponse;
+use inespayPayments\api\payflow\responses\PeriodicPayinsFileResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinsResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinTransactionsResponse;
 use inespayPayments\api\payflow\responses\SinglePayinsFileResponse;
@@ -56,6 +58,8 @@ class InespayApiPublic extends InespayApiBase
     public const PERIODIC_PAYIN_INIT_ENDPOINT = '/payins/periodic/init';
 
     public const PERIODIC_PAYIN_INFO_ENDPOINT = '/payins/periodic';
+
+    public const PERIODIC_PAYIN_FILE_ENDPOINT = '/payins/periodic/file';
 
     public const PERIODIC_PAYIN_CANCEL_ENDPOINT = '/payins/periodic/cancel';
 
@@ -291,6 +295,19 @@ class InespayApiPublic extends InespayApiBase
 
         $response = parent::apiRequest($periodicPayinRequestWithoutNulls, self::PERIODIC_PAYIN_INFO_ENDPOINT, self::GET_HTTP);
         return new PeriodicPayinsResponse($response);
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function getPeriodicPayinsFile(PeriodicPayinFileRequest $periodicPayinFileRequest): PeriodicPayinsFileResponse
+    {
+        $periodicPayinFileRequestArray = json_decode(json_encode($periodicPayinFileRequest), true);
+        $periodicPayinFileRequestWithoutNulls = array_filter((array) $periodicPayinFileRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
+
+        $response = parent::apiRequest($periodicPayinFileRequestWithoutNulls, self::PERIODIC_PAYIN_FILE_ENDPOINT, self::GET_HTTP);
+        return new PeriodicPayinsFileResponse($response);
 
     }
 
