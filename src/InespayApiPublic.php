@@ -33,12 +33,15 @@ use inespayPayments\api\payflow\responses\PeriodicPayinNotificationResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinResendNotificationResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinsResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinTransactionsResponse;
+use inespayPayments\api\payflow\responses\SinglePayinsFileResponse;
 
 class InespayApiPublic extends InespayApiBase
 {
     public const SINGLE_PAINS_INIT_ENDPOINT = '/payins/single/init';
 
     public const SINGLE_PAYINS_INFO_ENDPOINT = '/payins/single';
+
+    public const SINGLE_PAYINS_FILE_ENDPOINT = '/payins/single/file';
 
     public const SINGLE_PAYINS_NOTIFICATIONS_ENDPOINT = '/payins/single/notifications';
 
@@ -262,6 +265,19 @@ class InespayApiPublic extends InespayApiBase
 
         $response = parent::apiRequest($singlePayinRequestWithoutNulls, self::SINGLE_PAYINS_INFO_ENDPOINT, self::GET_HTTP);
         return new SinglePayinsResponse($response);
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function getSinglePayinsFile(SinglePayinRequest $singlePayinRequest): SinglePayinsFileResponse
+    {
+        $singlePayinRequestArray = json_decode(json_encode($singlePayinRequest), true);
+        $singlePayinRequestWithoutNulls = array_filter((array) $singlePayinRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
+
+        $response = parent::apiRequest($singlePayinRequestWithoutNulls, self::SINGLE_PAYINS_FILE_ENDPOINT, self::GET_HTTP);
+        return new SinglePayinsFileResponse($response);
 
     }
 
