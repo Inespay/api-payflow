@@ -4,140 +4,52 @@ namespace inespayPayments\api\payflow\responses;
 
 class PeriodicPayinsFileResponse extends BaseResponse
 {
-    private $periodicPayins = null;
+    private $mimeType = null;
 
-    private $itemsReturned = null;
-
-    private $currentPage = null;
-
-    private $totalItems = null;
-
-    private $totalPages = null;
-
-    private $pageSize = null;
+    private $base64Content = null;
 
     public function __construct($data)
     {
         parent::__construct($data);
 
-        if (isset($data->periodicPayins)) {
-            $this->periodicPayins = $data->periodicPayins;
+        if (isset($data->mimeType)) {
+            $this->mimeType = $data->mimeType;
         }
 
-        if (isset($data->itemsReturned)) {
-            $this->itemsReturned = $data->itemsReturned;
-        }
-
-        if (isset($data->currentPage)) {
-            $this->currentPage = $data->currentPage;
-        }
-
-        if (isset($data->totalItems)) {
-            $this->totalItems = $data->totalItems;
-        }
-
-        if (isset($data->totalPages)) {
-            $this->totalPages = $data->totalPages;
-        }
-
-        if (isset($data->pageSize)) {
-            $this->pageSize = $data->pageSize;
+        if (isset($data->base64Content)) {
+            $this->base64Content = $data->base64Content;
         }
     }
 
     /**
      * @return null
      */
-    public function getPeriodicPayins()
+    public function getMimeType()
     {
-        return $this->periodicPayins;
+        return $this->mimeType;
     }
 
     /**
-     * @param null $periodicPayins
+     * @param null $mimeType
      */
-    public function setPeriodicPayins($periodicPayins): void
+    public function setMimeType($mimeType): void
     {
-        $this->periodicPayins = $periodicPayins;
-    }
-
-    /**
-     * @return null
-     */
-    public function getItemsReturned()
-    {
-        return $this->itemsReturned;
-    }
-
-    /**
-     * @param null $itemsReturned
-     */
-    public function setItemsReturned($itemsReturned): void
-    {
-        $this->itemsReturned = $itemsReturned;
+        $this->mimeType = $mimeType;
     }
 
     /**
      * @return null
      */
-    public function getCurrentPage()
+    public function getBase64Content()
     {
-        return $this->currentPage;
+        return $this->base64Content;
     }
 
     /**
-     * @param null $currentPage
+     * @param null $base64Content
      */
-    public function setCurrentPage($currentPage): void
+    public function setBase64Content($base64Content): void
     {
-        $this->currentPage = $currentPage;
-    }
-
-    /**
-     * @return null
-     */
-    public function getTotalItems()
-    {
-        return $this->totalItems;
-    }
-
-    /**
-     * @param null $totalItems
-     */
-    public function setTotalItems($totalItems): void
-    {
-        $this->totalItems = $totalItems;
-    }
-
-    /**
-     * @return null
-     */
-    public function getTotalPages()
-    {
-        return $this->totalPages;
-    }
-
-    /**
-     * @param null $totalPages
-     */
-    public function setTotalPages($totalPages): void
-    {
-        $this->totalPages = $totalPages;
-    }
-
-    /**
-     * @return null
-     */
-    public function getPageSize()
-    {
-        return $this->pageSize;
-    }
-
-    /**
-     * @param null $pageSize
-     */
-    public function setPageSize($pageSize): void
-    {
-        $this->pageSize = $pageSize;
+        $this->base64Content = $base64Content;
     }
 }
