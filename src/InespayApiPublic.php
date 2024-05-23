@@ -167,7 +167,7 @@ class InespayApiPublic extends InespayApiBase
 
     public function generateSimplePaymentUrl(SingleInitRequest $singleInitRequest): SingleInitResponse
     {
-        $singleInitRequest->setAmount($this->convertAmount($singleInitRequest->getAmount()));
+        $singleInitRequest->setAmount(self::convertAmount($singleInitRequest->getAmount()));
         $singleInitRequestArray = json_decode(json_encode($singleInitRequest), true);
         $singleInitRequestWithoutNulls = array_filter((array) $singleInitRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
 
@@ -176,7 +176,7 @@ class InespayApiPublic extends InespayApiBase
         return new SingleInitResponse($response);
     }
 
-    private function convertAmount($amount)
+    public static function convertAmount(float $amount): int
     {
         $amountConverted = null;
         if (is_numeric($amount)) {
@@ -212,7 +212,7 @@ class InespayApiPublic extends InespayApiBase
      */
     public function generatePeriodicPaymentUrl(PeriodicInitRequest $periodicInitRequest): PeriodicInitResponse
     {
-        $periodicInitRequest->setAmount($this->convertAmount($periodicInitRequest->getAmount()));
+        $periodicInitRequest->setAmount(self::convertAmount($periodicInitRequest->getAmount()));
         $periodicInitRequestArray = json_decode(json_encode($periodicInitRequest), true);
         $periodicInitRequestWithoutNulls = array_filter((array) $periodicInitRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
 
@@ -252,7 +252,7 @@ class InespayApiPublic extends InespayApiBase
      */
     public function generateRefund(RefundRequest $refundRequest): RefundResponse
     {
-        $refundRequest->setAmount($this->convertAmount($refundRequest->getAmount()));
+        $refundRequest->setAmount(self::convertAmount($refundRequest->getAmount()));
         $refundRequestArray = json_decode(json_encode($refundRequest), true);
         $refundRequestWithoutNulls = array_filter((array) $refundRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
 
