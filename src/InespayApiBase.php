@@ -7,7 +7,18 @@ class InespayApiBase
 {
     public const STATUS_CODE_SUCCESS = '200';
     public const STATUS_CODE_ERROR = '300';
-    public const STATUS_CODE_ERROR_DESC = 'Default erro';
+    public const STATUS_CODE_ERROR_REQUEST = 'E300';
+    public const STATUS_CODE_INVALID_PARAMS = 'E301';
+    public const STATUS_CODE_INVALID_CREDENTIALS_COLLECTING = 'R300';
+    public const STATUS_CODE_PAYMENT_ORDER_ID_NOT_EXISTS = 'R301';
+    public const STATUS_CODE_REFUND_AMOUNT_GREATER_THAN_ORIGINAL_AMOUNT = 'R302';
+    public const STATUS_CODE_PAYMENT_ORDER_ID_NOT_EXECUTED = 'R303';
+    public const STATUS_CODE_PAYMENT_ORDER_ID_IS_RETURN = 'R304';
+    public const STATUS_CODE_REFUND_TOTAL_AMOUNT_GREATER_THAN_ORIGINAL_AMOUNT = 'R305';
+    public const STATUS_CODE_INSUFFICIENT_BALANCE = 'R306';
+    public const STATUS_CODE_REFUND_PENDING_ALREADY_EXIST = 'R307';
+
+    public const STATUS_CODE_ERROR_DESC = 'Default error';
 
     public const CONNECT_TIMEOUT = 28;
 
