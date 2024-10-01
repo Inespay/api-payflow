@@ -5,6 +5,8 @@ use Exception;
 
 class InespayApiBase
 {
+    public const STATUS_CODE_OK = 'OK';
+    public const STATUS_CODE_SETTLED = 'SETTLED';
     public const STATUS_CODE_SUCCESS = '200';
     public const STATUS_CODE_ERROR = '300';
     public const STATUS_CODE_ERROR_REQUEST = 'E300';
