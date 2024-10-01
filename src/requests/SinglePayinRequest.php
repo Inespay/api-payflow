@@ -15,8 +15,7 @@ class SinglePayinRequest implements \JsonSerializable
     private $reference;
     private $singlePayinId;
     private $codStatus;
-    private $debtorAccount;
-    private $creditorBankId;
+    private $debtorBankId;
 
     public function jsonSerialize()
     {
@@ -197,32 +196,16 @@ class SinglePayinRequest implements \JsonSerializable
     /**
      * @return mixed
      */
-    public function getDebtorAccount()
+    public function getDebtorBankId()
     {
-        return $this->debtorAccount;
+        return $this->debtorBankId;
     }
 
     /**
-     * @param mixed $debtorAccount
+     * @param mixed $debtorBankId
      */
-    public function setDebtorAccount($debtorAccount): void
+    public function setDebtorBankId($debtorBankId): void
     {
-        $this->debtorAccount = $debtorAccount;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreditorBankId()
-    {
-        return $this->creditorBankId;
-    }
-
-    /**
-     * @param mixed $creditorBankId
-     */
-    public function setCreditorBankId($creditorBankId): void
-    {
-        $this->creditorBankId = $creditorBankId;
+        $this->debtorBankId = $debtorBankId;
     }
 }
