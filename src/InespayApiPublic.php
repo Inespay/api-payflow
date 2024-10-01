@@ -632,7 +632,7 @@ class InespayApiPublic extends InespayApiBase
 
     public function getStatusFromDataReturn()
     {
-        return $this->dataReturnJson['status'];
+        return $this->dataReturnJson['codStatus'];
     }
 
     public function getDescriptionFromDataReturn()
