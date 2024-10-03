@@ -16,6 +16,7 @@ class PeriodicPayinRequest implements \JsonSerializable
     private $periodicPayinId;
     private $codStatus;
     private $debtorBankId;
+    private $creditorAccountId;
 
     public function jsonSerialize()
     {
@@ -206,5 +207,21 @@ class PeriodicPayinRequest implements \JsonSerializable
     public function setDebtorBankId($debtorBankId): void
     {
         $this->debtorBankId = $debtorBankId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreditorAccountId()
+    {
+        return $this->creditorAccountId;
+    }
+
+    /**
+     * @param mixed $creditorAccountId
+     */
+    public function setCreditorAccountId($creditorAccountId): void
+    {
+        $this->creditorAccountId = $creditorAccountId;
     }
 }
