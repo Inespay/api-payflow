@@ -33,6 +33,7 @@ class SingleInitRequest implements \JsonSerializable
     private $selectedBank;
 
     private $scheme;
+    private $debtorAccount;
 
     public function jsonSerialize()
     {
@@ -277,5 +278,21 @@ class SingleInitRequest implements \JsonSerializable
     public function setScheme($scheme): void
     {
         $this->scheme = $scheme;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDebtorAccount()
+    {
+        return $this->debtorAccount;
+    }
+
+    /**
+     * @param mixed $debtorAccount
+     */
+    public function setDebtorAccount($debtorAccount): void
+    {
+        $this->debtorAccount = $debtorAccount;
     }
 }
