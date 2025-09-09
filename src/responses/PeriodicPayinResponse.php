@@ -34,6 +34,7 @@ class PeriodicPayinResponse extends BaseResponse
 	private $createdAt = null;
 	private $updatedAt = null;
 	private $expiredAt = null;
+	private $resolvedAt = null;
 	private $transactions = [];
 	private $cancellations = [];
 
@@ -115,6 +116,9 @@ class PeriodicPayinResponse extends BaseResponse
 		}
 		if (isset($data->expiredAt)) {
 			$this->expiredAt = $data->expiredAt;
+		}
+		if (isset($data->resolvedAt)) {
+			$this->resolvedAt = $data->resolvedAt;
 		}
 		if (isset($data->transactions)) {
 			$this->transactions = $data->transactions;
@@ -498,6 +502,21 @@ class PeriodicPayinResponse extends BaseResponse
 	public function setExpiredAt($expiredAt): void
 	{
 		$this->expiredAt = $expiredAt;
+	}
+	/**
+	 * @return null
+	 */
+	public function getResolvedAt()
+	{
+		return $this->resolvedAt;
+	}
+
+	/**
+	 * @param null $resolvedAt
+	 */
+	public function setResolvedAt($resolvedAt): void
+	{
+		$this->resolvedAt = $resolvedAt;
 	}
 	/**
 	 * @return null
