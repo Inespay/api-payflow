@@ -42,13 +42,13 @@ class InespayApiBase
 
     private const URL_BASE = 'https://apiflow.inespay.com';
 
-    private const URL_TEST = self::URL_BASE . '/test/v21';
+    private const URL_TEST = self::URL_BASE . '/test/v22';
 
-    private const URL_SANDBOX = self::URL_BASE . '/san/v21';
+    private const URL_SANDBOX = self::URL_BASE . '/san/v22';
 
-    private const URL_UAT = self::URL_BASE . '/uat/v21';
+    private const URL_UAT = self::URL_BASE . '/uat/v22';
 
-    private const URL_PRODUCTION = self::URL_BASE . '/pro/v21';
+    private const URL_PRODUCTION = self::URL_BASE . '/pro/v22';
 
     public const GET_HTTP = 'get';
 
