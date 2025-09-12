@@ -36,6 +36,7 @@ class SinglePayinResponse extends BaseResponse
 	private $expiredAt = null;
 	private $resolvedAt = null;
 	private $transactions = [];
+	private $scheme = null;
 
 	public function __construct($data)
 	{
@@ -121,6 +122,9 @@ class SinglePayinResponse extends BaseResponse
 		}
 		if (isset($data->transactions)) {
 			$this->transactions = $data->transactions;
+		}
+		if (isset($data->scheme)) {
+			$this->scheme = $data->scheme;
 		}
 	}
 
@@ -528,5 +532,20 @@ class SinglePayinResponse extends BaseResponse
 	public function setTransactions($transactions): void
 	{
 		$this->transactions = $transactions;
+	}
+	/**
+	 * @return null
+	 */
+	public function getScheme()
+	{
+		return $this->scheme;
+	}
+
+	/**
+	 * @param null $scheme
+	 */
+	public function setScheme($scheme): void
+	{
+		$this->scheme = $scheme;
 	}
 }
