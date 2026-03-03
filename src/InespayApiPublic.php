@@ -36,6 +36,7 @@ use inespayPayments\api\payflow\responses\PeriodicPayinResendNotificationRespons
 use inespayPayments\api\payflow\responses\PeriodicPayinsFileResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinsResponse;
 use inespayPayments\api\payflow\responses\PeriodicPayinTransactionsResponse;
+use inespayPayments\api\payflow\responses\RefundReverseResponse;
 use inespayPayments\api\payflow\responses\SinglePayinsFileResponse;
 
 class InespayApiPublic extends InespayApiBase
@@ -71,6 +72,8 @@ class InespayApiPublic extends InespayApiBase
     public const PERIODIC_PAYINS_TRANSACTIONS_ENDPOINT = '/payins/periodic/transactions';
 
     public const SINGLE_PAYIN_REFUND_ENDPOINT = '/refunds/init';
+
+    public const SINGLE_PAYIN_REFUND_REVERSE_ENDPOINT = '/refunds/init-reverse';
 
     public const SINGLE_PAYINS_REFUND_SEPA_XML = '/refunds/sepa-xml';
 
@@ -258,6 +261,20 @@ class InespayApiPublic extends InespayApiBase
 
         $response = parent::apiRequest($refundRequestWithoutNulls, self::SINGLE_PAYIN_REFUND_ENDPOINT);
         return new RefundResponse($response);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function generateRefundReverse(RefundRequest $refundRequest): RefundReverseResponse
+    {
+        $refundRequest->setAmount(self::convertAmount($refundRequest->getAmount()));
+        $refundRequestArray = json_decode(json_encode($refundRequest), true);
+        $refundRequestWithoutNulls = array_filter((array) $refundRequestArray, [$this, "filterToRemoveNullValues"]); //Eliminamos los valores nulos, vacios..
+        
+        $response = parent::apiRequest($refundRequestWithoutNulls, self::SINGLE_PAYIN_REFUND_REVERSE_ENDPOINT);
+        Log::debug(print_r($response, true));
+        return new RefundReverseResponse($response);
     }
 
     /**
