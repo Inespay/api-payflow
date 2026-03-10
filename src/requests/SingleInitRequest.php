@@ -34,6 +34,7 @@ class SingleInitRequest implements \JsonSerializable
 
     private $scheme;
     private $debtorAccount;
+    private $currency;
 
     public function jsonSerialize()
     {
@@ -294,5 +295,20 @@ class SingleInitRequest implements \JsonSerializable
     public function setDebtorAccount($debtorAccount): void
     {
         $this->debtorAccount = $debtorAccount;
+    }
+    /**
+     * @return mixed
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param mixed $currency
+     */
+    public function setCurrency($currency): void
+    {
+        $this->currency = $currency;
     }
 }

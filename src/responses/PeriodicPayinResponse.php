@@ -38,6 +38,7 @@ class PeriodicPayinResponse extends BaseResponse
 	private $transactions = [];
 	private $cancellations = [];
 	private $scheme = [];
+	private $currency = 'EUR';
 
 	public function __construct($data)
 	{
@@ -566,5 +567,21 @@ class PeriodicPayinResponse extends BaseResponse
 	public function setScheme($scheme): void
 	{
 		$this->scheme = $scheme;
+	}
+
+	/**
+	 * @return null
+	 */
+	public function getCurrency()
+	{
+		return $this->currency;
+	}
+
+	/**
+	 * @param null $currency
+	 */
+	public function setCurrency($currency): void
+	{
+		$this->currency = $currency;
 	}
 }

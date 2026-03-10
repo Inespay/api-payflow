@@ -8,6 +8,7 @@ class MetricsTotalsResponse extends BaseResponse
     private $numOfPaymentsOk = null;
     private $paymentVolume = null;
     private $paymentVolumeOk = null;
+    private $currency = 'EUR';
 
 
     public function __construct($data)
@@ -87,5 +88,20 @@ class MetricsTotalsResponse extends BaseResponse
     public function setPaymentVolumeOk($paymentVolumeOk): void
     {
         $this->paymentVolumeOk = $paymentVolumeOk;
+    }
+    /**
+     * @return null
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param null $currency
+     */
+    public function setCurrency($currency): void
+    {
+        $this->currency = $currency;
     }
 }

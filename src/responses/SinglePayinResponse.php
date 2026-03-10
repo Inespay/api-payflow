@@ -37,6 +37,7 @@ class SinglePayinResponse extends BaseResponse
 	private $resolvedAt = null;
 	private $transactions = [];
 	private $scheme = null;
+	private $currency = 'EUR';
 
 	public function __construct($data)
 	{
@@ -547,5 +548,20 @@ class SinglePayinResponse extends BaseResponse
 	public function setScheme($scheme): void
 	{
 		$this->scheme = $scheme;
+	}
+	/**
+	 * @return null
+	 */
+	public function getCurrency()
+	{
+		return $this->currency;
+	}
+
+	/**
+	 * @param null $currency
+	 */
+	public function setCurrency($currency): void
+	{
+		$this->currency = $currency;
 	}
 }
