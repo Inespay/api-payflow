@@ -915,4 +915,12 @@ class InespayApiPublic extends InespayApiBase
 		$response = parent::apiRequest($metricsTopBanksRequestWithoutNulls, self::SINGLE_PAYINS_METRICS_TOP_BANKS_ENDPOINT, self::GET_HTTP);
         return new MetricsTopBanksResponse($response);
     }
+
+    public function getSinglePayinById($singlePayinId): SinglePayinResponse
+    {
+        $dataParams = [];
+        $response = parent::apiRequest($dataParams, self::SINGLE_PAYINS_INFO_ENDPOINT.'/'.$singlePayinId, self::GET_HTTP);
+
+        return new SinglePayinResponse($response);
+    }
 }
