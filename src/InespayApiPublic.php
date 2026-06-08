@@ -923,4 +923,11 @@ class InespayApiPublic extends InespayApiBase
 
         return new SinglePayinResponse($response);
     }
+    public function getPeriodicPayinById($periodicPayinId): PeriodicPayinResponse
+    {
+        $dataParams = [];
+        $response = parent::apiRequest($dataParams, self::PERIODIC_PAYIN_INFO_ENDPOINT.'/'.$periodicPayinId, self::GET_HTTP);
+
+        return new PeriodicPayinResponse($response);
+    }
 }

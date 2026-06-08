@@ -18,6 +18,7 @@ class PeriodicPayinResponse extends BaseResponse
 	private $reference = null;
 	private $creditorName = null;
 	private $creditorAccount = null;
+	private $creditorBankId = null;
 	private $customData = null;
 	private $customBeneficiary = null;
 	private $periodicPayinLink = null;
@@ -25,6 +26,7 @@ class PeriodicPayinResponse extends BaseResponse
 	private $codStatus = null;
 	private $debtorName = null;
 	private $debtorAccount = null;
+	private $debtorBankId = null;
 	private $successLinkRedirect = null;
 	private $successLinkRedirectMethod = null;
 	private $abortLinkRedirect = null;
@@ -71,6 +73,9 @@ class PeriodicPayinResponse extends BaseResponse
 		if (isset($data->creditorAccount)) {
 			$this->creditorAccount = $data->creditorAccount;
 		}
+		if (isset($data->creditorBankId)) {
+			$this->creditorBankId = $data->creditorBankId;
+		}
 		if (isset($data->customData)) {
 			$this->customData = $data->customData;
 		}
@@ -91,6 +96,9 @@ class PeriodicPayinResponse extends BaseResponse
 		}
 		if (isset($data->debtorAccount)) {
 			$this->debtorAccount = $data->debtorAccount;
+		}
+		if (isset($data->debtorBankId)) {
+			$this->debtorBankId = $data->debtorBankId;
 		}
 		if (isset($data->successLinkRedirect)) {
 			$this->successLinkRedirect = $data->successLinkRedirect;
@@ -271,6 +279,21 @@ class PeriodicPayinResponse extends BaseResponse
 	/**
 	 * @return null
 	 */
+	public function getCreditorBankId()
+	{
+		return $this->creditorBankId;
+	}
+
+	/**
+	 * @param null $creditorBankId
+	 */
+	public function setCreditorBankId($creditorBankId): void
+	{
+		$this->creditorBankId = $creditorBankId;
+	}
+	/**
+	 * @return null
+	 */
 	public function getCustomData()
 	{
 		return $this->customData;
@@ -372,6 +395,22 @@ class PeriodicPayinResponse extends BaseResponse
 	public function setDebtorAccount($debtorAccount): void
 	{
 		$this->debtorAccount = $debtorAccount;
+	}
+
+	/**
+	 * @return null
+	 */
+	public function getDebtorBankId()
+	{
+		return $this->debtorBankId;
+	}
+
+	/**
+	 * @param null $debtorBankId
+	 */
+	public function setDebtorBankId($debtorBankId): void
+	{
+		$this->debtorBankId = $debtorBankId;
 	}
 	/**
 	 * @return null
