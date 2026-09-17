@@ -27,6 +27,10 @@ class MetricsTotalsResponse extends BaseResponse
         if (isset($data->paymentVolumeOk)) {
             $this->paymentVolumeOk = $data->paymentVolumeOk;
         }
+
+        if (isset($data->currency)) {
+            $this->currency = $data->currency;
+        }
     }
 
     /**
